@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Register = () => {
+
+
+const ContextProvider = ({ children }) => {
     return (
         <div>
-            register
+
         </div>
     );
 };
 
-export default Register;
+export default ContextProvider;
