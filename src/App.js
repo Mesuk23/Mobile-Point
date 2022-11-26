@@ -5,6 +5,7 @@ import MyProduct from './Pages/AddProduct/MyProduct/MyProduct';
 import Blog from './Pages/Blog/Blog';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
+import Mobiles from './Pages/Mobiles/Mobiles';
 import Register from './Pages/Register/Register';
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
         },
         {
           path: '/products',
-          element: <MyProduct></MyProduct>
+          element: <Mobiles></Mobiles>,
+          loader: () => fetch('http://localhost:5000/AllMobiles')
         },
       ]
     }

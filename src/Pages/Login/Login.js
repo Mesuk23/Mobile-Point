@@ -3,7 +3,7 @@ import { authContext } from '../../Context/ContextProvider';
 
 const Login = () => {
     const [error, setError] = useState(false);
-    const { Login } = useContext(authContext);
+    const { Login, googleLogIn } = useContext(authContext);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -18,10 +18,21 @@ const Login = () => {
                 form.reset();
             })
             .catch(err => {
-                setError(err);
+                setError(err?.message);
             })
     }
 
+    const handleGoogleLogIn = () => {
+        googleLogIn()
+            .then(newUser => {
+                const user = newUser.user;
+                console.log(user);
+            })
+            .catch(err => {
+                console.error(err)
+                setError(err?.message)
+            })
+    }
     return (
         <div>
             <form onSubmit={handleLogin} className="hero min-h-screen bg-base-200">
@@ -48,13 +59,20 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
+
+                            <div className="form-control mt-6">
+                                <button onClick={handleGoogleLogIn} className="btn btn-outline btn-success">Sign In With Google</button>
+                            </div>
+
+                            <p>
+                                {
+                                    error && <p className='text-rose-700'>{error}</p>
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>
             </form>
-            {
-                error && <p className='text-red-700'>{error}</p>
-            }
         </div>
     );
 };

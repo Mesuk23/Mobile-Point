@@ -22,7 +22,7 @@ const Register = () => {
                 form.reset();
             })
             .catch((error) => {
-                setError(error);
+                setError(error?.message);
 
             });
 
@@ -59,13 +59,14 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
+                            {
+                                error && <p className='text-red-700'>{error}</p>
+                            }
                         </div>
                     </div>
                 </div>
             </form>
-            {
-                error && <p className='text-red-700'>{error}</p>
-            }
+
         </div>
     );
 };
