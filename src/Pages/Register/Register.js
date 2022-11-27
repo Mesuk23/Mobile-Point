@@ -6,6 +6,7 @@ import useTitle from '../../Hooks/Usetitle';
 const Register = () => {
     const { createUser } = useContext(authContext)
     const [error, setError] = useState(false);
+    const [user, setUser] = useState([]);
 
     useTitle('Register');
     const navigate = useNavigate()
@@ -17,10 +18,27 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
+        const role = form.role.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        // const user = { name, email, password };
+        const user = { name, role, email, password };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    form.reset()
+                    setUser(data)
+                }
+            })
 
         createUser(email, password)
             .then(newUser => {
@@ -50,6 +68,16 @@ const Register = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input name='name' type="text" placeholder="Name" className="input input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Role</span>
+                                </label>
+                                <select name='role' className="select select-bordered w-full max-w-xs">
+                                    <option disabled selected>Role?</option>
+                                    <option>User</option>
+                                    <option>Seller</option>
+                                </select>
                             </div>
                             <div className="form-control">
                                 <label className="label">
