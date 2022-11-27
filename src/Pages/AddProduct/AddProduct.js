@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import useTitle from '../../Hooks/Usetitle';
 
 const AddProduct = () => {
     const [products, setProducts] = useState([])
+    useTitle('Add Product');
 
     const handleProduct = event => {
-
-
-
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;

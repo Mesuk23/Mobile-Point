@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { authContext } from '../../Context/ContextProvider';
+import useTitle from '../../Hooks/Usetitle';
 
 const Login = () => {
     const [error, setError] = useState(false);
     const { Login, googleLogIn } = useContext(authContext);
+    useTitle('Login');
 
     const handleLogin = event => {
         event.preventDefault();

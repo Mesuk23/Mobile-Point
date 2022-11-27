@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../../Hooks/Usetitle';
 import AllMobiles from './AllMobiles';
 
 const Mobiles = () => {
     const mobiles = useLoaderData();
-
+    useTitle('Products');
 
     return (
         <div>
