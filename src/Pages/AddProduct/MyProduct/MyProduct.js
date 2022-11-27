@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { authContext } from '../../../Context/ContextProvider';
 import useTitle from '../../../Hooks/Usetitle';
-import MyAllProducts from './MyAllProducts';
 
 const MyProduct = () => {
     const { user } = useContext(authContext);

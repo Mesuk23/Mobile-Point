@@ -1,10 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../../Context/ContextProvider';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(authContext);
+    const [users, setUsers] = useState();
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+
+    console.log(users)
+    console.log(user)
 
     const handleLogOut = () => {
         logOut()
@@ -24,10 +33,17 @@ const Navbar = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/products">Products</Link></li>
-                        <li><Link to="/addproduct">Add Products</Link></li>
+
+                        {
+                            user && users?.role === 'Seller' && <>
+                                <li><Link to="/addproduct">Add Products</Link></li>
+                                <li><Link to="/myproducts">My Products</Link></li>
+                            </>
+                        }
 
                         {
                             user ? <>
+
                                 <Link onClick={handleLogOut} className="btn">Log Out</Link>
                             </> : <>
                                 <Link to="/login" className="btn">Log in</Link>
@@ -44,7 +60,7 @@ const Navbar = () => {
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/products">Products</Link></li>
                     {
-                        user && <>
+                        user && users?.role === 'Seller' && <>
                             <li><Link to="/addproduct">Add Products</Link></li>
                             <li><Link to="/myproducts">My Products</Link></li>
                         </>
