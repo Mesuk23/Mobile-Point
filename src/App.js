@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Mobiles from './Pages/Mobiles/Mobiles';
 import Register from './Pages/Register/Register';
+import NotFound from './Pages/Shared/NotFound/NotFound';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
@@ -47,6 +48,10 @@ function App() {
           loader: ({ params }) => fetch(`http://localhost:5000/allMobiles/${params.category}`)
         },
       ]
+    },
+    {
+      path: '*',
+      element: <NotFound></NotFound>
     }
   ])
   return (
