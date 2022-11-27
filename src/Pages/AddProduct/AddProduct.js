@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
 const AddProduct = () => {
     const [products, setProducts] = useState([])
+    const { user } = useContext(authContext)
     useTitle('Add Product');
 
     const handleProduct = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
+        const email = form.email.value;
         const sellerName = form.sellerName.value;
         const category = form.category.value;
+        const description = form.description.value;
         const price = form.price.value;
         const originalPrice = form.originalPrice.value;
         const year = form.time.value;
@@ -19,7 +23,7 @@ const AddProduct = () => {
         const img = form.img.value;
 
         const product = {
-            name, category, sellerName, price, originalPrice, year, time, location, img
+            name, category, sellerName, description, price, email, originalPrice, year, time, location, img
         }
         fetch('http://localhost:5000/allMobiles', {
             method: 'POST',
@@ -49,6 +53,12 @@ const AddProduct = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <input name='sellerName' type="text" placeholder="Name" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input name='email' defaultValue={user.email} readOnly className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -91,6 +101,12 @@ const AddProduct = () => {
                             <span className="label-text">Location</span>
                         </label>
                         <input name='location' type="text" placeholder="Location" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea name='description' type="text" placeholder="Location" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

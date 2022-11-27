@@ -4,9 +4,9 @@ import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
 const Register = () => {
-    const { createUser } = useContext(authContext)
+    const { createUser, user } = useContext(authContext)
     const [error, setError] = useState(false);
-    const [user, setUser] = useState([]);
+    const [users, setUsers] = useState([]);
 
     useTitle('Register');
     const navigate = useNavigate()
@@ -22,21 +22,22 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        const user = { name, role, email, password };
+        const singleUser = { name, role, email };
+
 
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(singleUser)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
                     form.reset()
-                    setUser(data)
+                    setUsers(data)
                 }
             })
 

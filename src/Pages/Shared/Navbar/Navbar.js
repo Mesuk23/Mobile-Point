@@ -44,7 +44,10 @@ const Navbar = () => {
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/products">Products</Link></li>
                     {
-                        user && <li><Link to="/addproduct">Add Products</Link></li>
+                        user && <>
+                            <li><Link to="/addproduct">Add Products</Link></li>
+                            <li><Link to="/myproducts">My Products</Link></li>
+                        </>
                     }
 
                 </ul>

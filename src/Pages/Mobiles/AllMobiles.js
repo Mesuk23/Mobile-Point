@@ -2,7 +2,7 @@ import React from 'react';
 import Checkout from '../Checkout/Checkout';
 
 const AllMobiles = ({ mobile }) => {
-    const { name, category, img, price, originalPrice, time, year, location } = mobile;
+    const { name, sellerName, category, img, price, originalPrice, time, year, location } = mobile;
     return (
         <div>
 
@@ -10,6 +10,7 @@ const AllMobiles = ({ mobile }) => {
                 <figure><img className='w-96 ml-3' src={img} alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">Model: {name}</h2>
+                    <p>Seller: {sellerName}</p>
                     <p>Location: {location}</p>
                     <p>Category: {category}</p>
                     <p>Price: ${price}</p>

@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Layout/Main';
 import AddProduct from './Pages/AddProduct/AddProduct';
+import MyProduct from './Pages/AddProduct/MyProduct/MyProduct';
 import Blog from './Pages/Blog/Blog';
 import Checkout from './Pages/Checkout/Checkout';
 import Home from './Pages/Home/Home/Home';
@@ -28,6 +29,10 @@ function App() {
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/myproducts',
+          element: <PrivateRoute><MyProduct></MyProduct></PrivateRoute>
         },
         {
           path: '/blog',
