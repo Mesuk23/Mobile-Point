@@ -1,23 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddProduct = () => {
+    const [products, setProducts] = useState([])
 
     const handleProduct = event => {
+
+
+
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const sellerName = form.sellerName.value;
+        const category = form.category.value;
         const price = form.price.value;
         const originalPrice = form.originalPrice.value;
-        const date = form.date.value;
-        const time = form.time.value;
+        const year = form.time.value;
+        const time = form.date.value;
         const location = form.location.value;
         const img = form.img.value;
 
-        const products = {
-            name, sellerName, price, originalPrice, date, time, location, img
+        const product = {
+            name, category, sellerName, price, originalPrice, year, time, location, img
         }
-        console.log(products)
+        fetch('http://localhost:5000/allMobiles', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    alert('product added')
+                    form.reset()
+                    setProducts(data)
+                }
+            })
     }
 
     return (
@@ -36,6 +56,12 @@ const AddProduct = () => {
                             <span className="label-text">Product Name</span>
                         </label>
                         <input name='name' type="text" placeholder="Product Name" className="input input-bordered" />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Category</span>
+                        </label>
+                        <input name='category' type="text" placeholder="Category" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
