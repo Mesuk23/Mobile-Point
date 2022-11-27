@@ -24,6 +24,7 @@ const Navbar = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/products">Products</Link></li>
+                        <li><Link to="/addproduct">Add Products</Link></li>
 
                         {
                             user ? <>
@@ -43,6 +44,7 @@ const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/products">Products</Link></li>
+                    <li><Link to="/addproduct">Add Products</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">

@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Layout/Main';
-import MyProduct from './Pages/AddProduct/MyProduct/MyProduct';
+import AddProduct from './Pages/AddProduct/AddProduct';
 import Blog from './Pages/Blog/Blog';
+import Checkout from './Pages/Checkout/Checkout';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Mobiles from './Pages/Mobiles/Mobiles';
@@ -31,9 +32,18 @@ function App() {
           element: <Blog></Blog>
         },
         {
+          path: '/addproduct',
+          element: <AddProduct></AddProduct>
+        },
+        {
           path: '/products',
           element: <Mobiles></Mobiles>,
-          loader: () => fetch('http://localhost:5000/AllMobiles')
+          loader: () => fetch('http://localhost:5000/allMobiles')
+        },
+        {
+          path: '/products/:category',
+          element: <Mobiles></Mobiles>,
+          loader: ({ params }) => fetch(`http://localhost:5000/allMobiles/${params.category}`)
         },
       ]
     }

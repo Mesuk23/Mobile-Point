@@ -1,4 +1,5 @@
 import React from 'react';
+import Checkout from '../Checkout/Checkout';
 
 const AllMobiles = ({ mobile }) => {
     const { name, category, img, price, originalPrice, time, year, location } = mobile;
@@ -16,10 +17,14 @@ const AllMobiles = ({ mobile }) => {
                     <p>Used: {year} years</p>
                     <p>Original Price: ${originalPrice}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Book Now</button>
+                        <label htmlFor="my-modal-6" className="btn btn-primary">Book Now</label>
                     </div>
+
                 </div>
+
             </div>
+            <Checkout mobile={mobile}></Checkout>
+
         </div>
     );
 };
