@@ -108,13 +108,13 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input name='name' type="text" placeholder="Name" className="input input-bordered" />
+                                <input required name='name' type="text" placeholder="Name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Role</span>
                                 </label>
-                                <select name='role' className="select select-bordered w-full max-w-xs">
+                                <select required name='role' className="select select-bordered w-full max-w-xs">
                                     <option disabled selected>Role?</option>
                                     <option>User</option>
                                     <option>Seller</option>
@@ -124,13 +124,13 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input name='email' type="email" placeholder="Email" className="input input-bordered" />
+                                <input required name='email' type="email" placeholder="Email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input name='password' type="password" placeholder="Password" className="input input-bordered" />
+                                <input required name='password' type="password" placeholder="Password" className="input input-bordered" />
 
                             </div>
                             <div className="form-control mt-6">

@@ -1,6 +1,6 @@
 
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const AllSeller = () => {
     const { data: productSeller = [], refetch } = useQuery({
@@ -8,17 +8,6 @@ const AllSeller = () => {
         queryFn: () => fetch('http://localhost:5000/seller')
             .then(res => res.json())
     })
-
-
-    // const [productSeller, setProductSeller] = useState([]);
-    // console.log(productSeller)
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/seller')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setProductSeller(data)
-    //         })
-    // }, [])
 
     const handleMakeAdmin = _id => {
         fetch(`http://localhost:5000/seller/admin/${_id}`, {
@@ -28,6 +17,18 @@ const AllSeller = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     alert('Make admin successful.')
+                    refetch()
+                }
+            })
+    }
+    const handleMakeVerified = _id => {
+        fetch(`http://localhost:5000/seller/verify/${_id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('Verified successfully.')
                     refetch()
                 }
             })
@@ -79,7 +80,7 @@ const AllSeller = () => {
                                     {seller?.role !== 'admin' && <button onClick={() => handleMakeAdmin(seller._id)} className='btn btn-xs btn-primary'>Make Admin</button>}
                                 </td>
                                 <td>
-                                    {seller?.verify === 'yes' ? <span className='text-success'> Verified</span> : <button onClick={() => handleMakeAdmin(seller._id)} className='btn btn-xs btn-primary'>Verify</button>
+                                    {seller?.verify === 'yes' ? <span className='text-success font-bold'> Verified</span> : <button onClick={() => handleMakeVerified(seller._id)} className='btn btn-xs btn-primary'>Verify</button>
                                     }
                                 </td>
                             </tr>
