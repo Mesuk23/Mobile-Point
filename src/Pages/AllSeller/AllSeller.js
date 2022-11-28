@@ -43,6 +43,7 @@ const AllSeller = () => {
                     if (data.deletedCount > 0) {
 
                         alert(` deleted successfully`)
+                        refetch()
                     }
                 })
         }
@@ -60,6 +61,7 @@ const AllSeller = () => {
                             <th>Email</th>
                             <th>Action</th>
                             <th>Admin</th>
+                            <th>Verify</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,6 +77,10 @@ const AllSeller = () => {
                                 </td>
                                 <td>
                                     {seller?.role !== 'admin' && <button onClick={() => handleMakeAdmin(seller._id)} className='btn btn-xs btn-primary'>Make Admin</button>}
+                                </td>
+                                <td>
+                                    {seller?.verify === 'yes' ? <span className='text-success'> Verified</span> : <button onClick={() => handleMakeAdmin(seller._id)} className='btn btn-xs btn-primary'>Verify</button>
+                                    }
                                 </td>
                             </tr>
                             )

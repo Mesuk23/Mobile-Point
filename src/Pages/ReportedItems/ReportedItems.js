@@ -1,8 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const ReportedItems = () => {
     const mobiles = useLoaderData();
+    const handleDelete = _id => {
+        const proceed = window.confirm('Are you sure to delete the comment?');
+        if (proceed) {
+            fetch(`http://localhost:5000/allMobiles/${_id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+
+                        alert(` deleted successfully`)
+
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -18,6 +35,7 @@ const ReportedItems = () => {
                             <th>Product</th>
                             <th>Price</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +48,9 @@ const ReportedItems = () => {
                                 <td>{mobile.name}</td>
                                 <td>{mobile.price}</td>
                                 <td>{mobile.time}</td>
+                                <td>
+                                    <button onClick={() => handleDelete(mobile._id)} className="btn btn-xs btn-error">Delete</button>
+                                </td>
                             </tr>
                             )
                         }
