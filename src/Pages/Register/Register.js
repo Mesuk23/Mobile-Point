@@ -4,15 +4,20 @@ import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
 const Register = () => {
-    const { createUser, user } = useContext(authContext)
+    const { createUser, user, googleLogIn } = useContext(authContext)
     const [error, setError] = useState(false);
     const [users, setUsers] = useState([]);
+
+
 
     useTitle('Register');
     const navigate = useNavigate()
 
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
+
+
+
 
     const handleUser = event => {
         event.preventDefault();
@@ -54,6 +59,41 @@ const Register = () => {
             });
 
     }
+
+    const handleGoogleLogIn = () => {
+        googleLogIn()
+            .then(newUser => {
+                const user = newUser.user;
+                const { displayName, email } = user;
+                const myUser = {
+                    name: displayName,
+                    role: 'User',
+                    email
+                }
+                console.log(myUser)
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(myUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.acknowledged) {
+                            setUsers(data)
+                        }
+                    })
+
+            })
+            .catch(err => {
+                console.error(err)
+                setError(err?.message)
+                navigate(from, { replace: true });
+            })
+    }
+
     return (
         <div>
             <form onSubmit={handleUser} className="hero min-h-screen bg-base-200">
@@ -95,6 +135,9 @@ const Register = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
+                            </div>
+                            <div className="form-control mt-6">
+                                <button onClick={handleGoogleLogIn} className="btn btn-outline btn-success">Sign In With Google</button>
                             </div>
                             {
                                 error && <p className='text-red-700'>{error}</p>

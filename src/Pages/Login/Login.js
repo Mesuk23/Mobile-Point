@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
 const Login = () => {
     const [error, setError] = useState(false);
-    const { Login, googleLogIn } = useContext(authContext);
     useTitle('Login');
     const navigate = useNavigate()
+    const { Login, } = useContext(authContext);
 
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -29,17 +29,6 @@ const Login = () => {
             })
     }
 
-    const handleGoogleLogIn = () => {
-        googleLogIn()
-            .then(newUser => {
-                const user = newUser.user;
-                console.log(user);
-            })
-            .catch(err => {
-                console.error(err)
-                setError(err?.message)
-            })
-    }
     return (
         <div>
             <form onSubmit={handleLogin} className="hero min-h-screen bg-base-200">
@@ -67,9 +56,7 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
 
-                            <div className="form-control mt-6">
-                                <button onClick={handleGoogleLogIn} className="btn btn-outline btn-success">Sign In With Google</button>
-                            </div>
+
 
                             <p>
                                 {

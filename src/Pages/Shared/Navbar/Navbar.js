@@ -12,9 +12,6 @@ const Navbar = () => {
             .then(data => setUsers(data))
     }, [])
 
-    console.log(users)
-    console.log(user)
-
     const handleLogOut = () => {
         logOut()
             .then(() => { })
