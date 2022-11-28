@@ -19,7 +19,7 @@ const MobileContainer = () => {
                 }
             </div>
             <div className='py-5 text-center'>
-                <Link to='/products' className='btn btn-success'>See All</Link>
+                <Link to='/products' className='btn btn-success'>See Category</Link>
 
             </div>
         </div>

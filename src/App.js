@@ -3,8 +3,10 @@ import './App.css';
 import Main from './Layout/Main';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import MyProduct from './Pages/AddProduct/MyProduct/MyProduct';
+import AllBuyer from './Pages/AllBuyer/AllBuyer';
+import AllSeller from './Pages/AllSeller/AllSeller';
 import Blog from './Pages/Blog/Blog';
-import Checkout from './Pages/Checkout/Checkout';
+import Dashboard from './Pages/Dashboard/Dashboard';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Mobiles from './Pages/Mobiles/Mobiles';
@@ -41,6 +43,22 @@ function App() {
         {
           path: '/addproduct',
           element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+        },
+        {
+          path: '/dashboard',
+          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        },
+        {
+          path: '/allseller',
+          element: <PrivateRoute><AllSeller></AllSeller></PrivateRoute>,
+        },
+        {
+          path: '/allbuyer',
+          element: <PrivateRoute><AllBuyer></AllBuyer></PrivateRoute>,
+        },
+        {
+          path: '/dashboard',
+          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         },
         {
           path: '/products',

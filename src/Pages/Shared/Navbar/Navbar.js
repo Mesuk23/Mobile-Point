@@ -35,15 +35,8 @@ const Navbar = () => {
                         <li><Link to="/products">Products</Link></li>
 
                         {
-                            user && users?.role === 'Seller' && <>
-                                <li><Link to="/addproduct">Add Products</Link></li>
-                                <li><Link to="/myproducts">My Products</Link></li>
-                            </>
-                        }
-
-                        {
                             user ? <>
-
+                                <li><Link to="/dashboard">Dashboard</Link></li>
                                 <Link onClick={handleLogOut} className="btn">Log Out</Link>
                             </> : <>
                                 <Link to="/login" className="btn">Log in</Link>
@@ -60,9 +53,8 @@ const Navbar = () => {
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/products">Products</Link></li>
                     {
-                        user && users?.role === 'Seller' && <>
-                            <li><Link to="/addproduct">Add Products</Link></li>
-                            <li><Link to="/myproducts">My Products</Link></li>
+                        user && <>
+                            <li><Link to="/dashboard">Dashboard</Link></li>
                         </>
                     }
 

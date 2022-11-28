@@ -1,15 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
 import { authContext } from '../../../Context/ContextProvider';
 import useTitle from '../../../Hooks/Usetitle';
 
 const MyProduct = () => {
     const { user } = useContext(authContext);
-    const [sellers, allSellers] = useState([]);
-    useEffect(() => {
-        fetch(`http://localhost:5000/allProducts/${user.email}`)
+
+    const { data: sellers = [] } = useQuery({
+        queryKey: ['mobiles'],
+        queryFn: () => fetch(`http://localhost:5000/allProducts/${user.email}`)
             .then(res => res.json())
-            .then(data => allSellers(data))
-    }, [])
+    })
 
     useTitle('My Products')
     return (
