@@ -7,6 +7,22 @@ const AllBuyer = () => {
         queryFn: () => fetch('http://localhost:5000/user')
             .then(res => res.json())
     })
+
+    const handleDelete = _id => {
+        const proceed = window.confirm('Are you sure to delete the comment?');
+        if (proceed) {
+            fetch(`http://localhost:5000/allMobiles/${_id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+
+                        alert(` deleted successfully`)
+                    }
+                })
+        }
+    }
     return (
         <div>
             <h1 className="text-4xl text-center text-amber-600 font-bold py-5">All Sellers</h1>
@@ -30,7 +46,7 @@ const AllBuyer = () => {
                                 <td>{buyer.role}</td>
                                 <td>{buyer.email}</td>
                                 <td>
-                                    <button className="btn btn-sm btn-error">Delete</button>
+                                    <button onClick={() => handleDelete(buyer._id)} className="btn btn-sm btn-error">Delete</button>
                                 </td>
                             </tr>
                             )
