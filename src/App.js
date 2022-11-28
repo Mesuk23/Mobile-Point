@@ -10,9 +10,12 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Mobiles from './Pages/Mobiles/Mobiles';
+import MyOrders from './Pages/MyOrders/MyOrders';
 import Register from './Pages/Register/Register';
+import ReportedItems from './Pages/ReportedItems/ReportedItems';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import AdminRoute from './PrivateRoute/AdminRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -32,33 +35,48 @@ function App() {
           path: '/register',
           element: <Register></Register>
         },
-        {
-          path: '/myproducts',
-          element: <PrivateRoute><MyProduct></MyProduct></PrivateRoute>
-        },
+
         {
           path: '/blog',
           element: <Blog></Blog>
         },
-        {
-          path: '/addproduct',
-          element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
-        },
-        {
-          path: '/dashboard',
-          element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-        },
-        {
-          path: '/allseller',
-          element: <PrivateRoute><AllSeller></AllSeller></PrivateRoute>,
-        },
-        {
-          path: '/allbuyer',
-          element: <PrivateRoute><AllBuyer></AllBuyer></PrivateRoute>,
-        },
+
+
+
         {
           path: '/dashboard',
           element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+          children: [
+            {
+              path: '/dashboard/myorder',
+              element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+            },
+            {
+              path: '/dashboard/addproduct',
+              element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+            },
+            {
+              path: '/dashboard/dashboard',
+              element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+            },
+            {
+              path: '/dashboard/allseller',
+              element: <AllSeller></AllSeller>
+            },
+            {
+              path: '/dashboard/allbuyer',
+              element: <AllBuyer></AllBuyer>,
+            },
+            {
+              path: '/dashboard/reporteditem',
+              element: <PrivateRoute><ReportedItems></ReportedItems></PrivateRoute>,
+              loader: () => fetch('http://localhost:5000/allMobiles')
+            },
+            {
+              path: '/dashboard/myproducts',
+              element: <PrivateRoute><MyProduct></MyProduct></PrivateRoute>
+            }
+          ]
         },
         {
           path: '/products',

@@ -106,7 +106,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Description</span>
                         </label>
-                        <textarea name='description' type="text" placeholder="Location" className="input input-bordered" />
+                        <textarea name='description' type="text" placeholder="description" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

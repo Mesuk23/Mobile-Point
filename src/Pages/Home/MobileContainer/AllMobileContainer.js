@@ -19,9 +19,6 @@ const AllMobileContainer = ({ mobile }) => {
                     <p>Published Date: {time}</p>
                     <p>Used: {year} years</p>
                     <p>Original Price: ${originalPrice}</p>
-                    <div className="card-actions justify-end">
-                        <Link to={`/checkout/${_id}`} className="btn btn-primary">Book Now</Link>
-                    </div>
                 </div>
             </div>
         </div>

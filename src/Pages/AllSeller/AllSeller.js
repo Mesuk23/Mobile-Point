@@ -1,17 +1,37 @@
+
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 
 const AllSeller = () => {
-    const [productSeller, setProductSeller] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/seller')
+    const { data: productSeller = [], refetch } = useQuery({
+        queryKey: ['seller'],
+        queryFn: () => fetch('http://localhost:5000/seller')
+            .then(res => res.json())
+    })
+
+
+    // const [productSeller, setProductSeller] = useState([]);
+    // console.log(productSeller)
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/seller')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setProductSeller(data)
+    //         })
+    // }, [])
+
+    const handleMakeAdmin = _id => {
+        fetch(`http://localhost:5000/seller/admin/${_id}`, {
+            method: 'PUT'
+        })
             .then(res => res.json())
             .then(data => {
-                setProductSeller(data)
+                if (data.modifiedCount > 0) {
+                    alert('Make admin successful.')
+                    refetch()
+                }
             })
-    }, [])
-
-
+    }
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
@@ -39,6 +59,7 @@ const AllSeller = () => {
                             <th>Role</th>
                             <th>Email</th>
                             <th>Action</th>
+                            <th>Admin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +71,10 @@ const AllSeller = () => {
                                 <td>{seller.role}</td>
                                 <td>{seller.email}</td>
                                 <td>
-                                    <button onClick={() => handleDelete(seller._id)} className="btn btn-sm btn-error">Delete</button>
+                                    <button onClick={() => handleDelete(seller._id)} className="btn btn-xs btn-error">Delete</button>
+                                </td>
+                                <td>
+                                    {seller?.role !== 'admin' && <button onClick={() => handleMakeAdmin(seller._id)} className='btn btn-xs btn-primary'>Make Admin</button>}
                                 </td>
                             </tr>
                             )
