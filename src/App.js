@@ -16,6 +16,7 @@ import ReportedItems from './Pages/ReportedItems/ReportedItems';
 import NotFound from './Pages/Shared/NotFound/NotFound';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import AdminRoute from './PrivateRoute/AdminRoute';
+import Checkout from './Pages/Checkout/Checkout';
 
 function App() {
   const router = createBrowserRouter([
@@ -40,6 +41,10 @@ function App() {
           path: '/blog',
           element: <Blog></Blog>
         },
+        {
+          path: '/checkout',
+          element: <Checkout></Checkout>
+        },
 
 
 
@@ -50,6 +55,7 @@ function App() {
             {
               path: '/dashboard/myorder',
               element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
+              loader: () => fetch('http://localhost:5000/allbuyer')
             },
             {
               path: '/dashboard/addproduct',

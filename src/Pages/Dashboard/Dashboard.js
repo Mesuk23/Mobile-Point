@@ -44,6 +44,9 @@ const Dashboard = () => {
                                 </Button><br />
                             </>
                         }
+                        <Button className='btn btn-outline mb-5'>
+                            <Link to='/dashboard/myorder'>My Orders</Link>
+                        </Button><br />
                         {
                             isUser && <>
                                 <Button className='btn btn-outline mb-5'>
