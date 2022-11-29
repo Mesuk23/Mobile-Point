@@ -91,7 +91,7 @@ function App() {
         },
         {
           path: '/products/:category',
-          element: <Mobiles></Mobiles>,
+          element: <PrivateRoute><Mobiles></Mobiles></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/allMobiles/${params.category}`)
         },
       ]

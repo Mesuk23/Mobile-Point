@@ -6,14 +6,14 @@ const MyOrders = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
-            fetch(`http://localhost:5000/allMobiles/${_id}`, {
+            fetch(`http://localhost:5000/allbuyer/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
 
-                        alert(` deleted successfully`)
+                        alert(`deleted successfully`)
 
                     }
                 })
