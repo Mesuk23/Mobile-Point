@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
@@ -139,6 +139,7 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button onClick={handleGoogleLogIn} className="btn btn-outline btn-success">Sign In With Google</button>
                             </div>
+                            <p className='py-3'>Already have an account?. Please <Link className='text-blue-600' to='/login'>Login</Link></p>
                             {
                                 error && <p className='text-red-700'>{error}</p>
                             }

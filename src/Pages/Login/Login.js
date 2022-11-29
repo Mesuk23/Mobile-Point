@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../../Context/ContextProvider';
 import useTitle from '../../Hooks/Usetitle';
 
@@ -55,6 +55,7 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
+                            <p className='py-3'>New to the website?. Please <Link className='text-blue-600' to='/register'>Register</Link></p>
 
 
 
