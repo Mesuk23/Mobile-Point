@@ -4,14 +4,14 @@ import React from 'react';
 const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['mobiles'],
-        queryFn: () => fetch('http://localhost:5000/user')
+        queryFn: () => fetch('https://assignment-12-server-xi.vercel.app/user')
             .then(res => res.json())
     })
 
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
-            fetch(`http://localhost:5000/user/${_id}`, {
+            fetch(`https://assignment-12-server-xi.vercel.app/user/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

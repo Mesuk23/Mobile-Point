@@ -6,7 +6,7 @@ import AllMobileContainer from './AllMobileContainer';
 const MobileContainer = () => {
     const { data: mobiles = [] } = useQuery({
         queryKey: ['mobiles'],
-        queryFn: () => fetch('http://localhost:5000/mobiles')
+        queryFn: () => fetch('https://assignment-12-server-xi.vercel.app/mobiles')
             .then(res => res.json())
     })
     return (

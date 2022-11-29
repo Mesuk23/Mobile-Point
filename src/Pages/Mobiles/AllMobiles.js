@@ -10,7 +10,7 @@ const AllMobiles = ({ mobile }) => {
     const { _id, name, sellerName, category, img, price, originalPrice, time, year, location, verify } = mobile;
     console.log(order)
     const handleCheckout = id => {
-        fetch(`http://localhost:5000/allMobiles/myMobile/${id}`)
+        fetch(`https://assignment-12-server-xi.vercel.app/allMobiles/myMobile/${id}`)
             .then(res => res.json())
             .then(data => setOrder(data))
     }
@@ -29,7 +29,7 @@ const AllMobiles = ({ mobile }) => {
         form.reset();
         console.log(orders)
 
-        fetch('http://localhost:5000/allbuyer', {
+        fetch('https://assignment-12-server-xi.vercel.app/allbuyer', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

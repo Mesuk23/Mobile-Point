@@ -30,7 +30,7 @@ const Register = () => {
         const singleUser = { name, role, email };
 
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-12-server-xi.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,7 +71,7 @@ const Register = () => {
                     email
                 }
                 console.log(myUser)
-                fetch('http://localhost:5000/users', {
+                fetch('https://assignment-12-server-xi.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

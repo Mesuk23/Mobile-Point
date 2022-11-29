@@ -23,35 +23,25 @@ const Dashboard = () => {
                     <div className="col-span-1 lg:border-r-2 lg:border-indigo-500 text-center">
                         {
                             isSeller && <>
-                                <Button className='btn btn-outline my-5'>
-                                    <Link to='/dashboard/myproducts'>My Products</Link>
-                                </Button> <br />
-                                <Button className='btn btn-outline mb-5'>
-                                    <Link to='/dashboard/addproduct'>Add Products</Link>
-                                </Button><br />
+                                <Link className='btn btn-outline my-5' to='/dashboard/myproducts'>My Products</Link><br />
+                                <Link className='btn btn-outline mb-5' to='/dashboard/addproduct'>Add Products</Link><br />
                             </>
                         }
                         {
                             isAdmin && <>
-                                <Button className='btn btn-outline mb-5'>
-                                    <Link to='/dashboard/allseller'>All Seller</Link>
-                                </Button><br />
-                                <Button className='btn btn-outline mb-5'>
-                                    <Link to='/dashboard/allbuyer'>All Buyer</Link>
-                                </Button><br />
-                                <Button className='btn btn-outline mb-5'>
-                                    <Link to='/dashboard/reporteditem'>Reported Items</Link>
-                                </Button><br />
+                                <Link className='btn btn-outline mb-5' to='/dashboard/allseller'>All Seller</Link>
+                                <br />
+                                <Link className='btn btn-outline mb-5' to='/dashboard/allbuyer'>All Buyer</Link>
+                                <br />
+                                <Link className='btn btn-outline mb-5' to='/dashboard/reporteditem'>Reported Items</Link>
+                                <br />
                             </>
                         }
-                        <Button className='btn btn-outline mb-5'>
-                            <Link to='/dashboard/myorder'>My Orders</Link>
-                        </Button><br />
+                        <Link className='btn btn-outline mb-5' to='/dashboard/myorder'>My Orders</Link>
+                        <br />
                         {
                             isUser && <>
-                                <Button className='btn btn-outline mb-5'>
-                                    <Link to='/dashboard/myorder'>My Orders</Link>
-                                </Button><br />
+                                <Link className='btn btn-outline mb-5' to='/dashboard/myorder'>My Orders</Link><br />
                             </>
                         }
 

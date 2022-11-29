@@ -6,7 +6,7 @@ const MyOrders = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
-            fetch(`http://localhost:5000/allbuyer/${_id}`, {
+            fetch(`https://assignment-12-server-xi.vercel.app/allbuyer/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

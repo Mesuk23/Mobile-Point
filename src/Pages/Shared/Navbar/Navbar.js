@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user, logOut } = useContext(authContext);
     const [users, setUsers] = useState();
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://assignment-12-server-xi.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])

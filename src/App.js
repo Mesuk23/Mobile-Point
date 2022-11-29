@@ -55,7 +55,7 @@ function App() {
             {
               path: '/dashboard/myorder',
               element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>,
-              loader: () => fetch('http://localhost:5000/allbuyer')
+              loader: () => fetch('https://assignment-12-server-xi.vercel.app/allbuyer')
             },
             {
               path: '/dashboard/addproduct',
@@ -76,7 +76,7 @@ function App() {
             {
               path: '/dashboard/reporteditem',
               element: <PrivateRoute><ReportedItems></ReportedItems></PrivateRoute>,
-              loader: () => fetch('http://localhost:5000/allMobiles')
+              loader: () => fetch('https://assignment-12-server-xi.vercel.app/allMobiles')
             },
             {
               path: '/dashboard/myproducts',
@@ -87,12 +87,12 @@ function App() {
         {
           path: '/products',
           element: <Mobiles></Mobiles>,
-          loader: () => fetch('http://localhost:5000/allMobiles')
+          loader: () => fetch('https://assignment-12-server-xi.vercel.app/allMobiles')
         },
         {
           path: '/products/:category',
           element: <PrivateRoute><Mobiles></Mobiles></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/allMobiles/${params.category}`)
+          loader: ({ params }) => fetch(`https://assignment-12-server-xi.vercel.app/allMobiles/${params.category}`)
         },
       ]
     },

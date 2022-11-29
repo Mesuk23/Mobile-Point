@@ -5,12 +5,12 @@ import React from 'react';
 const AllSeller = () => {
     const { data: productSeller = [], refetch } = useQuery({
         queryKey: ['seller'],
-        queryFn: () => fetch('http://localhost:5000/seller')
+        queryFn: () => fetch('https://assignment-12-server-xi.vercel.app/seller')
             .then(res => res.json())
     })
 
     const handleMakeAdmin = _id => {
-        fetch(`http://localhost:5000/seller/admin/${_id}`, {
+        fetch(`https://assignment-12-server-xi.vercel.app/seller/admin/${_id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
@@ -22,7 +22,7 @@ const AllSeller = () => {
             })
     }
     const handleMakeVerified = _id => {
-        fetch(`http://localhost:5000/seller/verify/${_id}`, {
+        fetch(`https://assignment-12-server-xi.vercel.app/seller/verify/${_id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
@@ -36,7 +36,7 @@ const AllSeller = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
-            fetch(`http://localhost:5000/seller/${_id}`, {
+            fetch(`https://assignment-12-server-xi.vercel.app/seller/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

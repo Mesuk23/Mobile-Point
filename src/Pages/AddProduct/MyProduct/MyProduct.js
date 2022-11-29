@@ -8,14 +8,14 @@ const MyProduct = () => {
 
     const { data: sellers = [] } = useQuery({
         queryKey: ['mobiles'],
-        queryFn: () => fetch(`http://localhost:5000/allProducts/${user.email}`)
+        queryFn: () => fetch(`https://assignment-12-server-xi.vercel.app/allProducts/${user.email}`)
             .then(res => res.json())
     })
 
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure to delete the comment?');
         if (proceed) {
-            fetch(`http://localhost:5000/allMobiles/${_id}`, {
+            fetch(`https://assignment-12-server-xi.vercel.app/allMobiles/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

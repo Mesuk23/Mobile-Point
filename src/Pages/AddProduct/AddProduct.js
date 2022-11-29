@@ -25,7 +25,7 @@ const AddProduct = () => {
         const product = {
             name, category, sellerName, description, price, email, originalPrice, year, time, location, img
         }
-        fetch('http://localhost:5000/allMobiles', {
+        fetch('https://assignment-12-server-xi.vercel.app/allMobiles', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
